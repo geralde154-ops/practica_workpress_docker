@@ -1,4 +1,8 @@
-# Ambiente WordPress con Docker Compose y Jenkins
+# Practica WordPress con Docker Compose y Jenkins
+
+Gerald Elizondo Mora
+
+
 
 Este proyecto implementa un ambiente completo de WordPress utilizando Docker Compose,
 versionado con Git y desplegado automáticamente mediante un pipeline de Jenkins.
@@ -24,11 +28,11 @@ versionado con Git y desplegado automáticamente mediante un pipeline de Jenkins
 
 El archivo `docker-compose.yml` define dos servicios:
 
-* **db**: contenedor de MySQL 8.0, con volumen persistente `db\_data` y variables
+* **db**: contenedor de MySQL 8.0, con volumen persistente `db\\\_data` y variables
 de entorno tomadas desde `.env` (usuario, contraseña, nombre de la base de datos).
 * **wordpress**: contenedor de WordPress, conectado a `db` mediante la red
-personalizada `wordpress\_net`, con volumen persistente `wp\_data` y expuesto en
-el puerto definido por `WORDPRESS\_PORT` (por defecto 8080).
+personalizada `wordpress\\\_net`, con volumen persistente `wp\\\_data` y expuesto en
+el puerto definido por `WORDPRESS\\\_PORT` (por defecto 8080).
 
 Ambos servicios tienen política de reinicio `restart: always`.
 
@@ -43,25 +47,25 @@ docker volume ls
 
 Se debe verificar que:
 
-* Los contenedores `mysql\_db` y `wordpress\_app` estén en estado `Up`.
-* La red `wordpress\_net` aparezca listada.
-* Los volúmenes `db\_data` y `wp\_data` existan.
+* Los contenedores `mysql\\\_db` y `wordpress\\\_app` estén en estado `Up`.
+* La red `wordpress\\\_net` aparezca listada.
+* Los volúmenes `db\\\_data` y `wp\\\_data` existan.
 
 ## Actividad 4 — Validar comunicación entre contenedores
 
 ```bash
-docker inspect mysql\_db
-docker inspect wordpress\_app
+docker inspect mysql\\\_db
+docker inspect wordpress\\\_app
 ```
 
 En la sección `NetworkSettings.Networks` de ambos contenedores debe aparecer
-`wordpress\_net`, confirmando que pertenecen a la misma red y pueden comunicarse.
+`wordpress\\\_net`, confirmando que pertenecen a la misma red y pueden comunicarse.
 
 También se puede validar la conexión directamente desde el contenedor de WordPress:
 
 ```bash
-docker exec -it wordpress\_app bash
-apt-get update \&\& apt-get install -y default-mysql-client
+docker exec -it wordpress\\\_app bash
+apt-get update \\\&\\\& apt-get install -y default-mysql-client
 mysql -h db -u wpuser -p
 ```
 
@@ -71,7 +75,7 @@ mysql -h db -u wpuser -p
 git init
 git add .
 git commit -m "Estructura inicial del proyecto WordPress con Docker Compose"
-git remote add origin https://github.com/geralde154-ops/practica\_workpress\_docker.git
+git remote add origin https://github.com/geralde154-ops/practica\\\_workpress\\\_docker.git
 git branch -M main
 git push -u origin main
 ```
